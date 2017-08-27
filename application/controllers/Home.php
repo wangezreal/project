@@ -24,9 +24,16 @@ class Home extends CI_Controller {
      */
     public function index()
     {   $test = $this->init_memchache();
-        $html = "<h2 style='text-align: center'>caicai is a beautiful girl;</h2>";
-        $test->add("first2",$html);
-        $testResult = $test->get("first2");
+        $html = "<h2 style='text-align: center'>caicai is a beautiful girl</h2>";
+        $testResult = $test->get("first");
+        if($testResult ==''){
+            $test->add("first",$html);
+
+        }else{
+            $test->delete('first');
+            $test->add("first",$html);
+        }
+        $testResult = $test->get("first");
         echo $testResult;
     }
 }
