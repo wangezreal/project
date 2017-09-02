@@ -92,9 +92,14 @@ class CI_Controller {
 	{
 		return self::$instance;
 	}
-    public function init_memchache(){
-        $test = new Memcache;
-        $test->addServer("localhost",11211);
+    public function init_nosql($type = ''){
+	    if($type == 'redis'){
+	        $test = new Redis();
+	        $test->connect('localhost',6379);
+        }else{
+            $test = new Memcache;
+            $test->addServer("localhost",11211);
+        }
         return $test;
     }
 }
