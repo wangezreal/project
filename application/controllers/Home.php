@@ -23,7 +23,7 @@ class Home extends CI_Controller {
      * @see https://codeigniter.com/user_guide/general/urls.html
      */
     public function index()
-    {   $test = $this->init_memchache();
+    {   $test = $this->init_nosql('memcache');
         $html = "<h2 style='text-align: center'>caicai is a beautiful girl</h2>";
         $testResult = $test->get("first");
         if($testResult ==''){
