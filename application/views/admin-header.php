@@ -1,34 +1,7 @@
 <head>
     <meta charset="utf-8">
     <title>心语心愿-记录你的故事</title>
-    <style type="text/css">
-        header{
-            background-color: deeppink;
-            color: white;
-        }
-        #user-header{
-            width: 100%;
-            height: 30px;
-            text-align: center;
-            font-size: 18px;
-            padding-bottom: 10px;
-        }
-        #login-box{
-            float: right;
-        }
-        #login-box a{
-            display: inline-block;
-            margin: 5px;
-            color: white;
-            box-shadow: 1px 1px 1px white;
-        }
-        .clear{
-            clear: both;
-        }
-        html{
-            width: 100%;
-        }
-    </style>
+    <link href=<?php echo base_url('/css/admin.css')?> rel="stylesheet" type="text/css">
 </head>
 <header>
     <div id="user-buttun">
