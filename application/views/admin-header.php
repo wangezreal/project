@@ -5,8 +5,12 @@
 </head>
 <header>
     <div id="user-buttun">
-        <div></div>
-        <div id="login-box"><a href="#">登录</a><a href="#">注册</a></div>
+        <div id="meun-buttun"></div>
+        <?php if (isLoginIn()):?>
+            <div id="login-box"><a href="#">登录</a><a href="#">注册</a></div>
+        <?php else:?>
+            <div id="login-box"><a href="#">登录</a><a href="#">注册</a></div>
+        <?php endif;?>
         <div class="clear"></div>
     </div>
     <div id="user-header">welocme to 你的心灵花园</div>
