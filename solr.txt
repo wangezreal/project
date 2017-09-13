@@ -1,0 +1,65 @@
+How to setup base on docker
+
+The following parameter is only for test:
+
+    numShards
+    replicationFactor
+    maxShardsPerNode
+
+*Make sure docker-compose is installed.
+Test enviornment setup:
+
+git clone http://{email}@stash.woger.local/scm/cfg/solr-cluster.git
+cd solr-cluster
+sudo docker-compose up -d
+
+Go into docker container to execute solr command
+
+sudo docker-compose exec solr1 bash
+
+Create collections offer
+
+./bin/solr zk upconfig -z zookeeper:2181 -n offer -d /opt/data/solr-collection-offer
+curl "http://localhost:8983/solr/admin/collections?action=CREATE&name=offer&numShards=1&replicationFactor=2&maxShardsPerNode=10&collection.configName=offer"
+
+Create collections attributes
+
+./bin/solr zk upconfig -z zookeeper:2181 -n attributes -d /opt/data/solr-collection-attributes
+curl "http://localhost:8983/solr/admin/collections?action=CREATE&name=attributes&numShards=1&replicationFactor=2&maxShardsPerNode=10&collection.configName=attributes"
+
+Create collections category
+
+./bin/solr zk upconfig -z zookeeper:2181 -n categories -d /opt/data/solr-collection-categories
+curl "http://localhost:8983/solr/admin/collections?action=CREATE&name=categories&numShards=1&replicationFactor=2&maxShardsPerNode=10&collection.configName=categories"
+
+Create collections products
+
+./bin/solr zk upconfig -z zookeeper:2181 -n products -d /opt/data/solr-collection-products
+curl "http://localhost:8983/solr/admin/collections?action=CREATE&name=products&numShards=1&replicationFactor=2&maxShardsPerNode=10&collection.configName=products"
+
+Create collections label
+
+./bin/solr zk upconfig -z zookeeper:2181 -n label -d /opt/data/solr-collection-label
+curl "http://localhost:8983/solr/admin/collections?action=CREATE&name=label&numShards=1&replicationFactor=2&maxShardsPerNode=10&collection.configName=label"
+
+Delete configuration example (Do not execute only when you need delete everything)
+
+./bin/solr zk rm -r -z zookeeper:2181 /configs/offer
+./bin/solr zk rm -r -z zookeeper:2181 /configs/attributes
+./bin/solr zk rm -r -z zookeeper:2181 /configs/categories
+./bin/solr zk rm -r -z zookeeper:2181 /configs/products
+./bin/solr zk rm -r -z zookeeper:2181 /configs/label
+
+Possible problems
+
+sudo docker-compose up -d
+
+    ERROR: The engine version is lesser than the minimum required by compose. Your current project requires a Docker Engine of version 1.10.0 or superior.
+
+    upgrade docker to lateset version Docker install
+
+sudo docker-compose exec solr1 bash
+
+    No such command: exec
+
+    upgrade docker-compose to latest version docker-compose install
