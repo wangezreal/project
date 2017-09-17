@@ -14,5 +14,5 @@
 
      function isLoginIn()
     {
-        return false;
+        return true;
     }

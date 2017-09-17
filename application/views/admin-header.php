@@ -7,7 +7,7 @@
     <div id="user-buttun">
         <div id="meun-buttun"></div>
         <?php if (isLoginIn()):?>
-            <div id="login-box"><a href="#">登录</a><a href="#">注册</a></div>
+            <div id="login-box"><a href="<?php echo base_url("loginIn")?>">登录</a><a href="<?php echo base_url("register")?>">注册</a></div>
         <?php else:?>
             <div id="login-box"><a href="#">登录</a><a href="#">注册</a></div>
         <?php endif;?>

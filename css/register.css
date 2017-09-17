@@ -1,0 +1,8 @@
+@media screen and (min-width: 320px) and (max-width: 480px){
+   .context{
+       width: 100%;
+   }
+   #breadcrum{
+       margin: 16px 0px 0px 8px;
+   }
+}

@@ -1,26 +1,35 @@
-header{
-    background-color: deeppink;
-    color: white;
-}
-#user-header{
-    width: 100%;
-    height: 30px;
-    text-align: center;
-    font-size: 18px;
-    padding-bottom: 10px;
-}
-#login-box{
-    float: right;
-}
-#login-box a{
-    display: inline-block;
-    margin: 5px;
-    color: white;
-    box-shadow: 1px 1px 1px white;
-}
-.clear{
-    clear: both;
-}
-html{
-    width: 100%;
+@media screen and (min-width: 320px) and (max-width: 480px){
+    header{
+        background-color: deeppink;
+        color: white;
+    }
+    #user-header{
+        width: 100%;
+        height: 30px;
+        text-align: center;
+        font-size: 18px;
+        padding-bottom: 10px;
+    }
+    #login-box{
+        float: right;
+    }
+    #login-box a{
+        display: inline-block;
+        margin: 5px;
+        color: white;
+        box-shadow: 1px 1px 1px white;
+    }
+    .clear{
+        clear: both;
+    }
+    html{
+        width: 100%;
+    }
+    #meun-buttun{
+        height: 30px;
+        width: 20%;
+        float: left;
+        margin: 8px 0px 0px 8px;
+        background-color: #00CC00;
+    }
 }
