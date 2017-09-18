@@ -5,4 +5,12 @@
    #breadcrum{
        margin: 16px 0px 0px 8px;
    }
+   input{
+       width: 94%;
+       margin: 8px 0px 0px 8px;
+   }
+   textarea{
+       width: 94%;
+       margin: 8px 0px 0px 8px;
+   }
 }

@@ -2,10 +2,10 @@
 -- version 4.0.10deb1
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Sep 17, 2017 at 03:09 PM
--- Server version: 5.5.57-0ubuntu0.14.04.1
--- PHP Version: 5.5.9-1ubuntu4.22
+-- 主机: localhost
+-- 生成日期: 2017-09-18 14:38:54
+-- 服务器版本: 5.5.57-0ubuntu0.14.04.1
+-- PHP 版本: 5.5.9-1ubuntu4.22
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `caicai`
+-- 数据库: `caicai`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `blocks`
+-- 表的结构 `blocks`
 --
 
 CREATE TABLE IF NOT EXISTS `blocks` (
@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS `blocks` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `daily`
+-- 表的结构 `daily`
 --
 
 CREATE TABLE IF NOT EXISTS `daily` (
@@ -58,7 +58,7 @@ CREATE TABLE IF NOT EXISTS `daily` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- 表的结构 `users`
 --
 
 CREATE TABLE IF NOT EXISTS `users` (
@@ -66,7 +66,9 @@ CREATE TABLE IF NOT EXISTS `users` (
   `user_name` varchar(128) DEFAULT NULL,
   `sex` char(5) NOT NULL,
   `name` varchar(32) NOT NULL,
+  `password` varchar(28) NOT NULL,
   `phone_number` varchar(18) NOT NULL,
+  `email` varchar(20) NOT NULL,
   `id_card` varchar(20) NOT NULL,
   `create_time` date NOT NULL,
   `update_time` date NOT NULL,
