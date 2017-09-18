@@ -12,7 +12,7 @@
         <div class="swiper-slide">Slide 3</div>
     </div>
     <!-- 如果需要分页器 -->
-    <!--<div class="swiper-pagination"></div>-->
+    <div class="swiper-pagination"></div>
 
     <!-- 如果需要导航按钮 -->
     <div class="swiper-button-prev"></div>
@@ -27,7 +27,7 @@
         loop: true,
 
         // 如果需要分页器
-      /*  pagination: '.swiper-pagination',*/
+        pagination: '.swiper-pagination',
 
         // 如果需要前进后退按钮
         nextButton: '.swiper-button-next',
