@@ -16,7 +16,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <a href="<?php echo base_url("/admin")?>">首页</a><span>注册用户</span>
     </div>
 </div>
-<form class="registe-form" id="registe-form" method="post" action="">
+<form class="registe-form" id="registe-form" method="post" action="<?php echo base_url("Register/registe")?>">
     <fieldset>
         <legend style="text-align: center">请输入你的个人信息</legend>
         <p>
