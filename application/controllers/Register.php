@@ -30,6 +30,5 @@ class Register extends CI_Controller
         $data['id_card'] = $_POST['id-card'];
         $data['create_time'] = date('Y-m-d G-i-s');
         $this->user_model->insertUser($data);
-        var_dump($this->user_model->getData());
     }
 }

@@ -1,0 +1,9 @@
+@media screen and (min-width: 320px) and (max-width: 480px){
+    .loginFiled{
+        width: 100%;
+        padding: 8px 0;
+    }
+    #loginBtn{
+        margin: auto;
+    }
+}

@@ -11,10 +11,22 @@ class LoginIn extends CI_Controller
    {
        parent::__construct();
        $this->load->library("session");
+       $this->load->model('user_model');
    }
 
     public function index()
    {
-      $this->load->view("welcome_message");
+      $this->load->view("login");
+   }
+
+   public function check()
+   {
+       if (isset($_POST['password']) && $_POST['password']) {
+           $status = $this->user_model->checkUser($_POST , true);
+           var_dump($status);
+       }  else  {
+           $status = $this->user_model->checkUser($_POST );
+           var_dump($status);
+       }
    }
 }
