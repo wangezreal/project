@@ -7,12 +7,4 @@
  */
 
 
-     function test()
-    {
-        echo 1;
-    }
 
-     function isLoginIn()
-    {
-        return true;
-    }

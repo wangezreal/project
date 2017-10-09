@@ -25,7 +25,7 @@ class User_model extends CI_Model
     public function checkUser($data , $checkPassword = false)
     {
         if ($checkPassword){
-            $sql = "select user_id from users WHERE user_name = ? AND password = ?";
+            $sql = "select user_id ,user_name,name from users WHERE user_name = ? AND password = ?";
             return $this->db->query($sql , array($data['username'] ,$data['password']))->row_array();
         }  else  {
             $sql = "select user_id from users WHERE user_name = ? ";
