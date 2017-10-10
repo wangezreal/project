@@ -25,7 +25,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         </p>
         <p>
             <label for="name">昵称 (必需, 最小八个字母)</label>
-            <input id="name" name="name" minlength="8" type="text" required>
+            <input id="name" name="name" minlength="2" type="text" required>
         </p>
         <p>
             <label for="password">密码 (必需, 最小八个字母)</label>

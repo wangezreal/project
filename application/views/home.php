@@ -12,7 +12,7 @@
         <div class="swiper-slide">Slide 3</div>
     </div>
     <!-- 如果需要分页器 -->
-    <!--<div class="swiper-pagination"></div>-->
+    <div class="swiper-pagination"></div>
 
     <!-- 如果需要导航按钮 -->
     <div class="swiper-button-prev"></div>
@@ -25,17 +25,25 @@
     var mySwiper = new Swiper ('.swiper-container', {
         direction: 'horizontal',
         loop: true,
+        watchSlidesProgress : true,
+        /*speed:3000,
+        autoplay:1,*/
+        paginationClickable:true,
 
         // 如果需要分页器
-      /*  pagination: '.swiper-pagination',*/
+        pagination: '.swiper-pagination',
 
         // 如果需要前进后退按钮
         nextButton: '.swiper-button-next',
         prevButton: '.swiper-button-prev',
 
+
+
         // 如果需要滚动条
       /*  scrollbar: '.swiper-scrollbar',*/
     })
+    mySwiper.progress;
+    mySwiper.slides[2].progress;
 </script>
 </body>
 </html>
