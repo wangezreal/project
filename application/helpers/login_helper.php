@@ -7,10 +7,9 @@
  */
 function isLoginIn()
 {
-    if (isset($_SESSION['name'])){
+    if (isset($_SESSION['name']) && isset($_SESSION['username']) && isset($_SESSION['userID'])){
         return true;
     }
     return false;
 }
-
 

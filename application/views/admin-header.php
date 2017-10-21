@@ -9,7 +9,7 @@
         <?php if (!isLoginIn()):?>
             <div id="login-box"><a href="<?php echo base_url("loginIn")?>">登录</a><a href="<?php echo base_url("register")?>">注册</a></div>
         <?php else:?>
-            <div id="login-box"><a href="#">登录</a><a href="#">注册</a></div>
+            <div id="login-box"><a href="<?php echo base_url("/user/".$_SESSION['userID'])?>"><?php echo $_SESSION['name']?></a><a href="<?php echo base_url('/loginOut')?>">注销</a></div>
         <?php endif;?>
         <div class="clear"></div>
     </div>
