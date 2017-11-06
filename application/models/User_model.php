@@ -32,4 +32,9 @@ class User_model extends CI_Model
             return $this->db->query($sql , array($data['username']))->row_array();
         }
     }
+
+    public function getlists($user_id)
+    {
+        return $this->db->get_where('daily',array("user_id"=>$user_id))->result_array();
+    }
 }
