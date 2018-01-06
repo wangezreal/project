@@ -16,6 +16,7 @@ class Admin extends CI_Controller
     {
         $this->load->helper('login');
         $this->load->library('session');
-        $this->load->view('admin');
+        $data['title'] = '秘密花园';
+        $this->load->view('admin',$data);
     }
 }

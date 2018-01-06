@@ -26,8 +26,8 @@
         direction: 'horizontal',
         loop: true,
         watchSlidesProgress : true,
-        /*speed:3000,
-        autoplay:1,*/
+        speed:3000,
+        autoplay:1,
         paginationClickable:true,
 
         // 如果需要分页器
