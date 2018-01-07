@@ -5,3 +5,4 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <?php 	$data['title'] = $title;
 		$this->load->view('adminHead',$data)?>
 </html>
+

@@ -8,7 +8,7 @@
 class Admin extends CI_Controller
 {
     public function __construct()
-    {
+	{
         parent::__construct();
     }
 
@@ -17,6 +17,9 @@ class Admin extends CI_Controller
         $this->load->helper('login');
         $this->load->library('session');
         $data['title'] = '秘密花园';
+		$this->session->set_userdata('username','aaaaa');
+		$this->session->set_userdata('name','aaaaa');
+		$this->session->set_userdata('userID','aaaaa');
         $this->load->view('admin',$data);
     }
 }
