@@ -5,6 +5,7 @@
     <script src="<?php echo base_url("/js/swiper-3.4.2.jquery.min.js")?>"></script>
 </head>
 <body>
+<?php phpinfo();?>
 <div class="swiper-container">
     <div class="swiper-wrapper">
         <div class="swiper-slide">Slide 1</div>

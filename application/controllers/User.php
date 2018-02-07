@@ -15,20 +15,29 @@ class User extends CI_Controller
 		$this->load->model('user_model');
 
 	}
+	public function login()
+	{
+		$data['title'] = '用户登录';
+		$this->load->view('login',$data);
+	}
 	public function loginIn()
 	{
 		$data = array(
-			'username'=>$_POST['username'],
-			'password'=>$_POST['password']
+			'user_name'=>$_POST['username'],
+			'password'=>$_POST['password'],
+			'remember'=>$_POST['remember']
 		);
-		if (isset($data['username']) && !empty($data['username'])){
-			$res = $this->user_model->getpd($data['username']);
-			if ($data['password'] == $res['password']){
-				$this->session->set_data('username',$res['username']);
-				$this->session->set_data('userID',$res['userID']);
-				$this->session->set_data('name',$res['name']);
+		if (isset($data['user_name']) && !empty($data['user_name'])){
+			$res = $this->user_model->getpd($data['user_name']);
+			if (!$res){
+				$msg = '账号不存在';
+				echo json_encode(array('status'=>false,'msg'=>$msg));
+			} elseif ($data['password'] == $res['password']){
+				$this->session->set_userdata('username',$res['user_name']);
+				$this->session->set_userdata('userID',$res['user_id']);
+				$this->session->set_userdata('name',$res['name']);
 				$msg = $res['name'].'欢迎登陆';
-				json_encode(array('status'=>true,'msg'=>$msg));
+				echo json_encode(array('status'=>true,'msg'=>$msg));
 			}else{
 				$msg = '密码错误';
 				echo json_encode(array('status'=>false,'msg'=>$msg));
@@ -39,8 +48,30 @@ class User extends CI_Controller
 		}
 	}
 
+	public function register()
+	{
+		$data['title'] = '用户注册';
+		$this->load->view('register',$data);
+	}
+
 	public function adduser()
 	{
-		
+		$result = $this->user_model->insertUser($_POST);
+		if ($result){
+			$res = $this->user_model->getpd($_POST['user_name']);
+			$this->session->set_userdata('username',$res['user_name']);
+			$this->session->set_userdata('userID',$res['user_id']);
+			$this->session->set_userdata('name',$res['name']);
+			echo json_encode(array('status'=>true,'msg'=>'注册成功'));
+		}else{
+			echo json_encode(array('status'=>false,'msg'=>'注册失败'));
+		}
 	}
+
+	public function loginout()
+	{
+		$this->session->sess_destroy();
+		header('Location:/admin');
+	}
+
 }

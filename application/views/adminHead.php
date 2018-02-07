@@ -2,8 +2,11 @@
 <head>
 	<title><?php echo $title?></title>
 	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link href="/css/vivify.min.css" rel="stylesheet">
+	<link href="/css/noticejs.css" rel="stylesheet" type="text/css">
 	<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="/js/notice.js"></script>
 </head>
 <nav class="navbar navbar-inverse" role="navigation">
 	<div class="container-fluid">
@@ -15,14 +18,12 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#">秘密花园</a>
+			<a class="navbar-brand ball" href="#">秘密花园</a>
 		</div>
 		<div class="collapse navbar-collapse" id="example-navbar-collapse">
 			<ul class="nav navbar-nav">
-				<li c><a href="#">第一功能</a></li>
-				<li><a href="#">第二功能</a></li>
 				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+					<a href="#" class="dropdown-toggle ball" data-toggle="dropdown">
 						日志 <!--<b class="caret"></b>-->
 					</a>
 					<!--<ul class="dropdown-menu">
@@ -37,14 +38,14 @@
 				</li>
 			</ul>
 			<?php if (isLoginIn()):?>
-			<ul class="nav navbar-nav navbar-right">
-				<li><a href="#"><span class="glyphicon glyphicon-user"></span> <?php echo $_SESSION['username']?></a></li>
-				<li><a href="#"><span class="glyphicon glyphicon-log-in"></span> 登出</a></li>
+			<ul class="nav navbar-nav navbar-right ball">
+				<li><a href="/user/login"><span class="glyphicon glyphicon-user"></span> <?php echo $_SESSION['name']?></a></li>
+				<li><a href="/user/loginout"><span class="glyphicon glyphicon-log-in"></span> 登出</a></li>
 			</ul>
 			<?php else: ?>
-			<ul class="nav navbar-nav navbar-right">
-				<li><a href="#"><span class="glyphicon glyphicon-user"></span> 注册</a></li>
-				<li><a href="#"><span class="glyphicon glyphicon-log-in"></span> 登录</a></li>
+			<ul class="nav navbar-nav navbar-right ball">
+				<li><a href="/user/register"><span class="glyphicon glyphicon-user"></span> 注册</a></li>
+				<li><a href="/user/login"><span class="glyphicon glyphicon-log-in"></span> 登录</a></li>
 			</ul>
 			<?php endif;?>
 		</div>
