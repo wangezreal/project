@@ -15,6 +15,10 @@ class User extends CI_Controller
 		$this->load->model('user_model');
 
 	}
+	public function index($user_id)
+	{
+		echo $user_id;
+	}
 	public function login()
 	{
 		$data['title'] = '用户登录';

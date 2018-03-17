@@ -2,10 +2,17 @@
 <head>
 	<title><?php echo $title?></title>
 	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link href="http://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 	<link href="/css/vivify.min.css" rel="stylesheet">
 	<link href="/css/noticejs.css" rel="stylesheet" type="text/css">
+	<link href="<?php echo base_url("/css/swiper-3.4.2.min.css")?>" rel="stylesheet" type="text/css">
+	<link href="<?php echo base_url("/css/bootstrap-datetimepicker.min.css")?>" rel="stylesheet" type="text/css">
 	<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="<?php echo base_url("/js/swiper-3.4.2.jquery.min.js")?>"></script>
+	<script src="<?php echo base_url("/js/bootstrap-paginator.js")?>"></script>
+	<script src="<?php echo base_url("/js/bootstrap-datetimepicker.min.js")?>"></script>
+	<script src="<?php echo base_url("/js/bootstrap-datetimepicker.zh-CN.js")?>"></script>
 	<script src="/js/notice.js"></script>
 </head>
 <nav class="navbar navbar-inverse" role="navigation">
@@ -18,28 +25,60 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand ball" href="#">秘密花园</a>
+			<a class="navbar-brand ball" href="/admin">秘密花园</a>
 		</div>
 		<div class="collapse navbar-collapse" id="example-navbar-collapse">
-			<ul class="nav navbar-nav">
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle ball" data-toggle="dropdown">
-						日志 <!--<b class="caret"></b>-->
-					</a>
-					<!--<ul class="dropdown-menu">
-						<li><a href="#">jmeter</a></li>
-						<li><a href="#">EJB</a></li>
-						<li><a href="#">Jasper Report</a></li>
-						<li class="divider"></li>
-						<li><a href="#">分离的链接</a></li>
-						<li class="divider"></li>
-						<li><a href="#">另一个分离的链接</a></li>
-					</ul>-->
-				</li>
-			</ul>
 			<?php if (isLoginIn()):?>
+				<ul class="nav navbar-nav">
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle ball" data-toggle="dropdown">
+							日志 <b class="caret"></b>
+						</a>
+						<ul class="dropdown-menu">
+							<li><a href="/log">我的日志</a></li>
+							<li class="divider"></li>
+							<li><a href="/log/tlog">旅行日志</a></li>
+						</ul>
+					</li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle ball" data-toggle="dropdown">
+							旅行计划 <b class="caret"></b>
+						</a>
+						<ul class="dropdown-menu">
+							<li><a href="#">我的旅行安排</a></li>
+							<li class="divider"></li>
+							<li><a href="#">最近出行攻略</a></li>
+							<li class="divider"></li>
+							<li><a href="#">最近出行天气</a></li>
+						</ul>
+					</li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle ball" data-toggle="dropdown">
+							兴趣提醒订阅 <b class="caret"></b>
+						</a>
+						<ul class="dropdown-menu">
+							<li><a href="#">美食推荐</a></li>
+							<li class="divider"></li>
+							<li><a href="#">最近电影</a></li>
+							<li class="divider"></li>
+							<li><a href="#">图书推荐</a></li>
+						</ul>
+					</li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle ball" data-toggle="dropdown">
+							重要日程提醒 <b class="caret"></b>
+						</a>
+						<ul class="dropdown-menu">
+							<li><a href="#">重要日程提醒</a></li>
+							<li class="divider"></li>
+							<li><a href="#">星语心愿</a></li>
+							<li class="divider"></li>
+							<li><a href="#">礼物推荐</a></li>
+						</ul>
+					</li>
+				</ul>
 			<ul class="nav navbar-nav navbar-right ball">
-				<li><a href="/user/login"><span class="glyphicon glyphicon-user"></span> <?php echo $_SESSION['name']?></a></li>
+				<li><a href="/user/index/<?php echo $_SESSION['userID']?>"><span class="glyphicon glyphicon-user"></span> <?php echo $_SESSION['name']?></a></li>
 				<li><a href="/user/loginout"><span class="glyphicon glyphicon-log-in"></span> 登出</a></li>
 			</ul>
 			<?php else: ?>
