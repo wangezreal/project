@@ -30,10 +30,15 @@ class Log extends CI_Controller
 		$this->load->library('session');
 	}
 
-	public function index()
+	public function index($type=0)
 	{
-		$data['title'] = '日志列表';
-		$data['lists'] = '';
+		if ($type == 0){
+			$data['title'] = '日志列表';
+			$data['lists'] = '';
+		}else{
+			$data['title'] = '旅行日志';
+			$data['lists'] = '';
+		}
 		$this->load->view("loglist",$data);
 	}
 
