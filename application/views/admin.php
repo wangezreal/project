@@ -103,11 +103,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </style>
 <?php if (isLoginIn()):?>
 	<div id="travelnotice "class="col-md-6">
-		<p>下个目的地：<span style="float: right">上海</span></p>
-		<p>预计出行日期：<span style="float: right">2012-12-02</span></p>
-		<p>实际出行日期：<span style="float: right">2012-12-03</span></p>
+		<p>下个目的地：<span style="float: right"><?php if ($res){echo $res['pname'].'-'.$res['cityname'];}else{echo '暂无安排，世界那么大，去看看吧！';} ?></span></p>
+		<p>预计出行日期：<span style="float: right"><?php if ($res){echo $res['p_date'];}else{echo '还在等什么呢？踩着时间的尾巴，享受青春吧！';}?></span></p>
+		<div id="container" <!--class="col-md-6"-->></div>
 	</div>
-    <div id="giftbox" class="col-md-5"><div class="container">
+    <div id="giftbox" class="col-md-5"><div class="container" style="width: auto">
 			<div class="row">
 				<div class="col-md-offset-3 col-md-6" style="margin-left: 0">
 					<div class="tab" role="tabpanel">
@@ -141,20 +141,117 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				</div>
 			</div>
 		</div></div>
-	<div id="container" class="col-md-6"></div>
 	<div style="clear: both"></div>
+	<script type="text/javascript">
+		var map = new AMap.Map('container',{
+			pitch:75,
+			viewMode:'3D',
+			zoom: 17,
+			expandZoomRange:true,
+			zooms:[3,20],
+			center: [116.39,39.9]
+		});
+	</script>
 <?php else:?>
+	<canvas id="canvas" style="margin-top:-20px " ></canvas>
+	<script type="text/javascript">
+		"use strict";
+		var canvas = document.getElementById('canvas'),
+			ctx = canvas.getContext('2d'),
+			w = canvas.width = window.innerWidth,
+			h = canvas.height = window.innerHeight,
+
+			hue = 217,
+			stars = [],
+			count = 0,
+			maxStars = 1400;
+
+		// Thanks @jackrugile for the performance tip! http://codepen.io/jackrugile/pen/BjBGoM
+		// Cache gradient
+		var canvas2 = document.createElement('canvas'),
+			ctx2 = canvas2.getContext('2d');
+		canvas2.width = 100;
+		canvas2.height = 100;
+		var half = canvas2.width/2,
+			gradient2 = ctx2.createRadialGradient(half, half, 0, half, half, half);
+		gradient2.addColorStop(0.025, '#fff');
+		gradient2.addColorStop(0.1, 'hsl(' + hue + ', 61%, 33%)');
+		gradient2.addColorStop(0.25, 'hsl(' + hue + ', 64%, 6%)');
+		gradient2.addColorStop(1, 'transparent');
+
+		ctx2.fillStyle = gradient2;
+		ctx2.beginPath();
+		ctx2.arc(half, half, half, 0, Math.PI * 2);
+		ctx2.fill();
+
+		// End cache
+
+		function random(min, max) {
+			if (arguments.length < 2) {
+				max = min;
+				min = 0;
+			}
+
+			if (min > max) {
+				var hold = max;
+				max = min;
+				min = hold;
+			}
+
+			return Math.floor(Math.random() * (max - min + 1)) + min;
+		}
+
+		var Star = function() {
+
+			this.orbitRadius = random(w / 2 - 50);
+			this.radius = random(100, this.orbitRadius) / 10;
+			this.orbitX = w / 2;
+			this.orbitY = h / 2;
+			this.timePassed = random(0, maxStars);
+			this.speed = random(this.orbitRadius) / 100000;
+			this.alpha = random(2, 10) / 10;
+
+			count++;
+			stars[count] = this;
+		}
+
+		Star.prototype.draw = function() {
+			var x = Math.sin(this.timePassed + 1) * this.orbitRadius + this.orbitX,
+				y = Math.cos(this.timePassed) * this.orbitRadius/2 + this.orbitY,
+				twinkle = random(10);
+
+			if (twinkle === 1 && this.alpha > 0) {
+				this.alpha -= 0.05;
+			} else if (twinkle === 2 && this.alpha < 1) {
+				this.alpha += 0.05;
+			}
+
+			ctx.globalAlpha = this.alpha;
+			ctx.drawImage(canvas2, x - this.radius / 2, y - this.radius / 2, this.radius, this.radius);
+			this.timePassed += this.speed;
+		}
+
+		for (var i = 0; i < maxStars; i++) {
+			new Star();
+		}
+
+		function animation() {
+			ctx.globalCompositeOperation = 'source-over';
+			ctx.globalAlpha = 0.8;
+			ctx.fillStyle = 'hsla(' + hue + ', 64%, 6%, 1)';
+			ctx.fillRect(0, 0, w, h)
+
+			ctx.globalCompositeOperation = 'lighter';
+			for (var i = 1, l = stars.length; i < l; i++) {
+				stars[i].draw();
+			};
+
+			window.requestAnimationFrame(animation);
+		}
+
+		animation();
+	</script>
 <?php endif;?>
-<script type="text/javascript">
-	var map = new AMap.Map('container',{
-		pitch:75,
-		viewMode:'3D',
-		zoom: 17,
-		expandZoomRange:true,
-		zooms:[3,20],
-		center: [116.39,39.9]
-	});
-</script>
 </html>
 
 

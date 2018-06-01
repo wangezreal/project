@@ -10,6 +10,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <html lang="en">
 <?php 	$data['title'] = $title;
 $this->load->view('adminHead',$data)?>
+<style>
+	.swiper-container{
+		width: 40%;
+		margin: auto;
+	}
+</style>
 <div class="panel panel-default">
 	<!-- Default panel contents -->
 	<div class="panel-heading">添加日志</div>
@@ -38,7 +44,7 @@ $this->load->view('adminHead',$data)?>
 						<span class="btn btn-success fileinput-button" style="padding: 3px">
                     <i class=" col-md-8 glyphicon glyphicon-plus"></i>
                     <span>Add files...</span>
-                   	 <input type="file" name="files[]" multiple></span>
+                   	 <input type="file" name="files[]" multiple id="fileUpload"></span>
 					</div>
 				</div>
 				<!-- The table listing the files available for upload/download -->
@@ -46,6 +52,21 @@ $this->load->view('adminHead',$data)?>
 			</div>
 
 			<div class="from-group">
+				<div class="swiper-container " style="margin-bottom: 10px">
+					<div class="swiper-wrapper" id="image_holder">
+					</div>
+					<!-- 如果需要分页器 -->
+					<div class="swiper-pagination"></div>
+
+					<!-- 如果需要导航按钮 -->
+					<div class="swiper-button-prev"></div>
+					<div class="swiper-button-next"></div>
+
+					<!-- 如果需要滚动条 -->
+					<!-- <div class="swiper-scrollbar"></div>-->
+				</div>
+			</div>
+			<div class="from-group col-md-6 ">
 			</div>
 			<input type="button" class="btn btn-default" id="sub-btn" value="提交">
 		</form>
@@ -69,6 +90,48 @@ $this->load->view('adminHead',$data)?>
 				});
 			}
 		});
+	});
+	$("#fileUpload").on('change', function () {
+
+		if (typeof (FileReader) != "undefined") {
+
+			var image_holder = $("#image_holder");
+			image_holder.empty();
+			var i;
+			for (i=0;i<event.target.files.length;i++){
+				var reader = new FileReader();
+				reader.onload = function (e) {
+					$("<img />", {
+						"src": e.target.result,
+						"class": "thumb-image swiper-slide"
+					}).appendTo(image_holder);
+				}
+				image_holder.show();
+				reader.readAsDataURL($(this)[0].files[i]);
+				var mySwiper = new Swiper ('.swiper-container', {
+					direction: 'horizontal',
+					loop: true,
+					watchSlidesProgress : true,
+					speed:1500,
+					autoplay:1,
+					paginationClickable:true,
+
+					// 如果需要分页器
+					pagination: '.swiper-pagination',
+
+					// 如果需要前进后退按钮
+					nextButton: '.swiper-button-next',
+					prevButton: '.swiper-button-prev',
+
+
+
+					// 如果需要滚动条
+					/*  scrollbar: '.swiper-scrollbar',*/
+				})
+			}
+		} else {
+			alert("你的浏览器不支持FileReader.");
+		}
 	});
 </script>
 

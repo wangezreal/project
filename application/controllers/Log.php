@@ -32,6 +32,9 @@ class Log extends CI_Controller
 
 	public function index($type=0)
 	{
+		if(!isLoginIn()){
+			header("location:http://localhost/admin");
+		}
 		if ($type == 0){
 			$data['title'] = '日志列表';
 			$data['lists'] = '';
@@ -44,6 +47,9 @@ class Log extends CI_Controller
 
 	public function addlog()
 	{
+		if(!isLoginIn()){
+			header("location:http://localhost/admin");
+		}
 		$data['title'] = '添加日志';
 		$this->load->view("addlog",$data);
 	}

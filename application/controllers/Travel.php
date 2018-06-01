@@ -16,6 +16,9 @@ class Travel extends CI_Controller
 	}
 	public function index($page=1)
 	{
+		if(!isLoginIn()){
+			header("location:http://localhost/admin");
+		}
 		if (isset($_SESSION['userID'])){
 			$data['title'] = '旅行安排';
 			$data['list'] = $this->travel_model->getlist($_SESSION['userID'],$page);
@@ -30,6 +33,9 @@ class Travel extends CI_Controller
 	}
 	public function addtravel()
 	{
+		if(!isLoginIn()){
+			header("location:http://localhost/admin");
+		}
 		$data['title'] = '添加安排';
 		$this->load->view("addtravel",$data);
 	}
@@ -48,5 +54,42 @@ class Travel extends CI_Controller
 		}else{
 			echo json_encode(array('status'=>false,'msg'=>'添加失败'));
 		}
+	}
+	public function finishtravel()
+	{
+		$res = $this->travel_model->getlist($_SESSION['userID'],1);
+		if (!$res){
+			echo json_encode(array('status'=>false));
+			return;
+		}
+		$data = $res[0];
+		$data['do_date'] = date('Y-m-d');
+		$data['is_do'] = 1;
+		$data['update_date'] = date('Y-m-d H:i:s');
+		$result = $this->travel_model->updatetravel($data);
+		if ($result){
+			echo json_encode(array('status'=>true));
+		}else{
+			echo json_encode(array('status'=>false));
+		}
+	}
+	public function deltravel()
+	{
+		$user_id =$_POST['user_id'];
+		$cid = $_POST['cid'];
+		$result = $this->travel_model->deltravel($user_id,$cid);
+		echo $result;
+	}
+	public function weather()
+	{
+		if(!isLoginIn()){
+			header("location:http://localhost/admin");
+		}
+		$arr = $this->travel_model->getlist($_SESSION['userID'],1);
+		if (!empty($arr)){
+			$data['arr'] = $arr[0];
+		}
+		$data['title'] = '出行天气';
+		$this->load->view("weather",$data);
 	}
 }

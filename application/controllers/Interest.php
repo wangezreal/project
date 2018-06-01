@@ -12,11 +12,13 @@ class Interest extends CI_Controller
 		parent::__construct();
 		$this->load->helper('login');
 		$this->load->library('session');
-		$this->load->model('travel_model');
 	}
 
 	public function movie()
 	{
+		if(!isLoginIn()){
+			header("location:http://localhost/admin");
+		}
 		$data['title'] = '豆瓣电影推荐';
 		$this->load->view("movie",$data);
 	}

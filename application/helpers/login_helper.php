@@ -13,3 +13,15 @@ function isLoginIn()
     return false;
 }
 
+function returnSubDate($day)
+{
+	$da1 = strtotime($day);
+	$nowday = date('Y-m-d');
+	$da2 = strtotime($nowday);
+	if ($da1<$da2){
+		return;
+	}else{
+		$sub = ($da1-$da2)/3600/24;
+		echo "距离预计日期还有".$sub."天";
+	}
+}

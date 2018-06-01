@@ -61,7 +61,7 @@
 							<li class="divider"></li>
 							<li><a href="#">最近出行攻略</a></li>
 							<li class="divider"></li>
-							<li><a href="#">最近出行天气</a></li>
+							<li><a href="/travel/weather">最近出行天气</a></li>
 						</ul>
 					</li>
 					<li class="dropdown">
